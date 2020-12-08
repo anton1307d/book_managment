@@ -17,3 +17,6 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/books','App\Http\Controllers\Api\BookController@index');
+Route::post('/books/create','App\Http\Controllers\Api\BookController@create');
