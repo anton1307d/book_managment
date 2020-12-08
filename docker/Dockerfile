@@ -12,10 +12,19 @@ RUN apt-get update && apt-get install -y \
     libonig-dev \
     libxml2-dev \
     zip \
-    unzip
+    unzip \
+    autoconf \
+    pkg-config \
+    libssl-dev
 
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Install mongo
+RUN pecl install mongodb
+
+COPY docker/config/php/conf.d/*.ini  /usr/local/etc/php/conf.d/
+RUN echo "extension=mongodb.so" >> /usr/local/etc/php/php.ini
 
 # Install PHP extensions
 RUN docker-php-ext-install  mbstring exif pcntl bcmath gd

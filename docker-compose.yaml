@@ -6,7 +6,7 @@ services:
         user: anton
         uid: 1000
       context: ./
-      dockerfile: Dockerfile
+      dockerfile: ./docker/Dockerfile
     image: book-app
     container_name: book-app
     restart: unless-stopped
@@ -26,6 +26,22 @@ services:
       - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
     networks:
       - book-app
+  mongodb:
+    container_name: book-mongodb
+    image: mongo:latest
+    environment:
+      - MONGO_INITDB_DATABASE=homestead
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=root
+    volumes:
+      - ./docker/mongo/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo-js:ro
+#      - ./mongo-volume:/data/db
+    ports:
+      - 27017:27017
+    logging:
+      driver: none
+    networks:
+        - book-app
 
 networks:
   book-app:
