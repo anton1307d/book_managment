@@ -3,11 +3,11 @@ services:
   app:
     build:
       args:
-        user: anton
+        user: sammy
         uid: 1000
       context: ./
       dockerfile: ./docker/Dockerfile
-    image: book-app
+    image: book
     container_name: book-app
     restart: unless-stopped
     working_dir: /var/www/
