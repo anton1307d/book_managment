@@ -39,6 +39,7 @@ RUN mkdir -p /home/$user/.composer && \
 
 RUN chown -R $user:$user  /var/www
 # Set working directory
+
 WORKDIR /var/www
 
 USER $user
