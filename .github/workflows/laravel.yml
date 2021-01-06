@@ -19,3 +19,5 @@ jobs:
 
     - name:  Build
       run:  docker-compose build
+    - name: Build
+        run: docker-compose exec app bash php artisan key:generate
