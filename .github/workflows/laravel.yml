@@ -1,5 +1,21 @@
+
+name: Book Managment Tools
+
 on:
   push:
     branches: [ main ]
   pull_request:
     branches: [ main ]
+
+  jobs:
+    build:
+      runs-on: ubuntu-latest
+
+      steps:
+      - uses: actions/checkout@v2
+
+      - name: Set Up .env
+        run: cp .env.example .env
+
+      - name: docker-compose build
+        run:  docker-compose build
