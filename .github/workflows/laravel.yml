@@ -18,12 +18,9 @@ jobs:
       run: cp .env.example .env
     - name:  Build
       run:  docker-compose build
-    - name: Install composer
-      uses: php-actions/composer@v5
-      with:
-        php_version: 8
-        composer_version: 2
     - name: Build
       run: docker-compose up -d
+    - name: Install composer
+      run: docker-compose exec -T  app composer install
     - name: Artisan Key Genegate
-      run:  docker-compose exec -T -u sammy  app php artisan key:generate
+      run:  docker-compose exec -T app php artisan key:generate
