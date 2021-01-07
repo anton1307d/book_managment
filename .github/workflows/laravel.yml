@@ -19,7 +19,7 @@ jobs:
     - name:  Build
       run:  docker-compose build
     - name: Build
-      run: docker-compose up app -d
+      run: docker-compose up -d app
     - name: Install composer
       run: docker exec book-app composer install
     - name: Artisan Key Genegate
