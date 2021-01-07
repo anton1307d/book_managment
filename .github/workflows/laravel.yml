@@ -21,6 +21,9 @@ jobs:
     - name: Build
       run: docker-compose up -d
     - name: Install composer
-      run: docker-compose exec -T  -u sammy app composer install
+      uses: php-actions/composer@v5
+      with:
+        php_version: 8
+        composer_version: 2
     - name: Artisan Key Genegate
       run:  docker-compose exec -T -u sammy  app php artisan key:generate
