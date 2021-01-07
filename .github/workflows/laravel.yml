@@ -21,6 +21,6 @@ jobs:
     - name: Build
       run: docker-compose up -d
     - name: Install composer
-      run: docker-compose exec -T app composer install
+      run: mkdir vendor && chmod 755 vendor && docker-compose exec -T app composer install
     - name: Artisan Key Genegate
       run:  docker-compose exec -T app php artisan key:generate
