@@ -16,10 +16,9 @@ jobs:
 
     - name: Set Up .env
       run: cp .env.example .env
-
     - name:  Build
       run:  docker-compose build
-    - name: Build
-      run: docker-compose up -d
-    - name: Build
+    - name: Install composer
+      run: docker exec book-app composer install
+    - name: Artisan Key Genegate
       run:  docker exec book-app php artisan key:generate
