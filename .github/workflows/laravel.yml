@@ -8,12 +8,11 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
-
     - name: Set Up .env
       run: cp .env.example .env
     - name:  Build
@@ -24,3 +23,5 @@ jobs:
       run: docker-compose exec -T  app composer install
     - name: Artisan Key Genegate
       run:  docker-compose exec -T app php artisan key:generate
+    - name: Test
+      run:  docker-compose exec -T app php artisan test
