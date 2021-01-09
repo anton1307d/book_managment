@@ -59,7 +59,7 @@ jobs:
         ls -la
         cp -TR . ../build
         tar -cvf deploy.tar ../build/
-        cd ../
+        cd ../build/
         ls -la
     - name: copy file via ssh password
       uses: appleboy/scp-action@master
