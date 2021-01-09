@@ -49,7 +49,7 @@ jobs:
       run:  docker push anton1307/book_managment:latest
   deploy:
     runs-on: ubuntu-latest
-    needs: test
+    needs: publish
 
     steps:
     - name: multiple command
