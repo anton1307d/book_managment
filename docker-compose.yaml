@@ -5,9 +5,10 @@ services:
       args:
         user: sammy
         uid: 1000
+        tag:
       context: ./
       dockerfile: ./docker/Dockerfile
-    image: book
+    image: anton1307/book_managment
     container_name: book-app
     restart: unless-stopped
     working_dir: /var/www/
