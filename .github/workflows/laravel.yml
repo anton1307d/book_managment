@@ -76,7 +76,7 @@ jobs:
         port: ${PORT}
         envs: DOCKER_USERNAME, DOCKER_PASSWORD
         script: |
-          tar -xvf "/deploy.tar" "/deploy"
+          tar -xvf "/deploy.tar"
           mv "/deploy/docker-compose.yaml" ~/docker-compose.yaml
           rm /deploy.tar && rm -Rf "/deploy"
 #          docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}
