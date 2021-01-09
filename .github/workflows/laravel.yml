@@ -51,16 +51,16 @@ jobs:
     runs-on: ubuntu-latest
     needs: test
 
-      steps:
-      - name: multiple command
-        uses: appleboy/ssh-action@master
-          with:
-            host: ${HOST}
-            username: ${USERNAME}
-            key: ${SSH_KEY}
-            port: ${PORT}
-            script: |
-                 whoami
-                 ls -al
+    steps:
+    - name: multiple command
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${HOST}
+        username: ${USERNAME}
+        key: ${SSH_KEY}
+        port: ${PORT}
+        script: |
+          whoami
+          ls -al
 
 
