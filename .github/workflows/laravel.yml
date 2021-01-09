@@ -52,15 +52,12 @@ jobs:
 #    needs: publish
 
     steps:
+    - uses: actions/checkout@v2
     - name: Run a multi-line script
       run: |
-        pwd
         mkdir ../build
-        ls -la
         cp -TR . ../build
         tar -cvf deploy.tar ../build/
-        cd ../build/
-        ls -la
     - name: copy file via ssh password
       uses: appleboy/scp-action@master
       with:
@@ -68,7 +65,7 @@ jobs:
         username: ${USERNAME}
         key: ${SSH_KEY}
         port: ${PORT}
-        source: "./docker-compose.yaml"
+        source: "./deploy.tar"
         target: "~/"
 
 #    - name: start project
