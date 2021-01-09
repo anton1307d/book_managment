@@ -59,8 +59,10 @@ jobs:
        username: ${USERNAME}
        key: ${SSH_KEY}
        port: ${PORT}
-       source: "docker-compose.yaml"
+       source: "./docker-compose.yaml"
        target: "/"
+    - name: ls
+      run: ls -la
     - name: start project
       uses: appleboy/ssh-action@master
       with:
