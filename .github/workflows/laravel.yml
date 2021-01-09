@@ -52,7 +52,16 @@ jobs:
     needs: publish
 
     steps:
-    - name: multiple command
+    - name: copy file via docker-compose.yaml
+      uses: appleboy/scp-action@master
+      with:
+       host: ${HOST}
+       username: ${USERNAME}
+       key: ${SSH_KEY}
+       port: ${PORT}
+         source: "docker-compose.yaml"
+         target: "/"
+    - name: start project
       uses: appleboy/ssh-action@master
       with:
         host: ${HOST}
@@ -61,4 +70,9 @@ jobs:
         port: ${PORT}
         script: |
           docker pull anton1307/book_managment:latest
+          docker-compose up -d
+          docker-compose exec -T app composer install
+          docker-compose exec -T app cp .env.example .env
+          docker-compose exec -T app php artisan key:generate
+          docker-compose exec -T app php artisan migrate
 
