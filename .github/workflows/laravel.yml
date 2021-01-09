@@ -69,6 +69,7 @@ jobs:
         key: ${SSH_KEY}
         port: ${PORT}
         script: |
+          docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}
           docker pull anton1307/book_managment:latest
           docker-compose up -d
           docker-compose exec -T app composer install
