@@ -54,12 +54,13 @@ jobs:
     steps:
     - name: Run a multi-line script
       run: |
-        grep  docker-compose
         pwd
         mkdir ../build
         ls -la
         cp -TR . ../build
         tar -cvf deploy.tar ../build/
+        cd ../
+        ls -la
     - name: copy file via ssh password
       uses: appleboy/scp-action@master
       with:
