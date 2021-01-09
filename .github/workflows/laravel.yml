@@ -38,6 +38,7 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     needs: test
+
     steps:
     - uses: actions/checkout@v2
     - name: Docker Login
@@ -49,6 +50,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     needs: test
+
       steps:
       - name: multiple command
         uses: appleboy/ssh-action@master
