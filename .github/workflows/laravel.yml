@@ -76,11 +76,14 @@ jobs:
         port: ${PORT}
         envs: DOCKER_USERNAME, DOCKER_PASSWORD
         script: |
+          untar "/deploy.tar" "/deploy"
+          mv "/deploy/docker-compose.yaml" ~/docker-compose.yaml
+          rm /deploy.tar && rm -Rf "/deploy"
           docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}
           docker pull anton1307/book_managment:latest
-#          docker-compose up -d
-#          docker-compose exec -T app composer install
-#          docker-compose exec -T app cp .env.example .env
-#          docker-compose exec -T app php artisan key:generate
-#          docker-compose exec -T app php artisan migrate
+          docker-compose up -d
+          docker-compose exec -T app composer install
+          docker-compose exec -T app cp .env.example .env
+          docker-compose exec -T app php artisan key:generate
+          docker-compose exec -T app php artisan migrate
 
