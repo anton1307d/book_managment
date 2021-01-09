@@ -65,19 +65,19 @@ jobs:
         key: ${SSH_KEY}
         port: ${PORT}
         source: "deploy.tar"
-        target: "/"
+        target: "~/"
 
-    - name: start project
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${HOST}
-        username: ${USERNAME}
-        key: ${SSH_KEY}
-        port: ${PORT}
-        envs: DOCKER_USERNAME, DOCKER_PASSWORD
-        script: |
-          tar -xvf "/deploy.tar"
-          mv "/build/docker-compose.yaml" "~/docker-compose.yaml"
+#    - name: start project
+#      uses: appleboy/ssh-action@master
+#      with:
+#        host: ${HOST}
+#        username: ${USERNAME}
+#        key: ${SSH_KEY}
+#        port: ${PORT}
+#        envs: DOCKER_USERNAME, DOCKER_PASSWORD
+#        script: |
+#          tar -xvf "/deploy.tar"
+#          mv "/build/docker-compose.yaml" "~/docker-compose.yaml"
 #          rm /deploy.tar && rm -Rf "/build"
 #          docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}
 #          docker pull anton1307/book_managment:latest
