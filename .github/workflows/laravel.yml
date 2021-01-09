@@ -54,6 +54,7 @@ jobs:
     steps:
     - name: Run a multi-line script
       run: |
+        pwd
         mkdir ../build
         ls -la
         cp -TR . ../build
