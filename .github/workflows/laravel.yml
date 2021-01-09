@@ -11,6 +11,10 @@ env:
   DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
   DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
   TAG: ${{ github.run_number }}-${{ github.sha }}
+  HOST: ${{ secrets.APP_HOST }}
+  SSH_KEY:  ${{ secrets.APP_SSH_KEY }}
+  PORT: 22
+  USERNAME: ${{ secrets.USERNAME }}
 
 jobs:
   test:
@@ -42,4 +46,18 @@ jobs:
       run: docker-compose build app
     - name: Push to Registry
       run:  docker push anton1307/book_managment:latest
+  deploy:
+    runs-on: ubuntu-latest
+    needs: test
+             - name: multiple command
+             uses: appleboy/ssh-action@master
+             with:
+               host: ${HOST}
+               username: ${USERNAME}
+               key: ${SSH_KEY}
+               port: ${PORT}
+               script: |
+                 whoami
+                 ls -al
+
 
