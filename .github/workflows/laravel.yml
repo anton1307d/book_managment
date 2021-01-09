@@ -60,7 +60,5 @@ jobs:
         key: ${SSH_KEY}
         port: ${PORT}
         script: |
-          whoami
-          ls -al
-
+          docker pull anton1307/book_managment:latest
 
