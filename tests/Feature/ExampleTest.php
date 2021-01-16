@@ -15,7 +15,7 @@ class ExampleTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
-        $response = $this->get('/api/books');
+        $response = $this->get('/');
 
         $response->assertStatus(200);
     }
