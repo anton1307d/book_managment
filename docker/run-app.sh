@@ -5,11 +5,11 @@ set -e
 role=${CONTAINER_ROLE:-app}
 env=${APP_ENV:-production}
 
-if [ "$env" != "local" ]; then
-    echo "Caching configuration..."
-    (cd /var/www/html && php artisan config:cache && php artisan route:cache)
-
-fi
+#if [ "$env" != "local" ]; then
+#    echo "Caching configuration..."
+#    (cd /var/www/html && php artisan config:cache && php artisan route:cache)
+#
+#fi
 
 if [ "$env" == "local" ] && [ ! -z "$DEV_UID" ]; then
     echo "Changing www-data UID to $DEV_UID"
