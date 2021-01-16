@@ -29,7 +29,7 @@ jobs:
     - name: Build
       run: docker-compose up -d
     - name: composer install
-      run: docker-compose exec -T composer install
+      run: docker-compose exec -T app composer install
     - name: Artisan Key Genegate
       run:  docker-compose exec -T app php artisan key:generate
     - name: Test
