@@ -31,7 +31,7 @@ jobs:
     - name: Artisan Key Genegate
       run:  docker-compose exec -T app php artisan key:generate
     - name: Test
-      run:  docker-compose exec -T app php artisan test
+      run:  docker-compose exec -T app php artisan route:cache && php artisan route:clear &&  php artisan test
 
   publish:
     runs-on: ubuntu-latest
