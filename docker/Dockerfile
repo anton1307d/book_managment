@@ -71,7 +71,7 @@ RUN chown -R www-data:www-data /var/www && /usr/local/bin/changeowner www-data $
 
 WORKDIR /var/www/html
 
-RUN composer install --no-dev --prefer-dist --optimize-autoloader
+RUN composer install  --prefer-dist
 
 EXPOSE 80
 

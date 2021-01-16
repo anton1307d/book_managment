@@ -11,9 +11,9 @@ services:
     image: anton1307/book_managment
     container_name: book-app
     restart: unless-stopped
-    working_dir: /var/www/
+    working_dir: /var/www/html
 #    volumes:
-#      - ./:/var/www
+#      - ./:/var/www/html
     ports:
       - 80:80
     networks:
