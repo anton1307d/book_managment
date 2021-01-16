@@ -7,24 +7,15 @@ services:
         uid: 1000
         tag:
       context: ./
-      dockerfile: ./docker/Dockerfile
+      dockerfile: docker/Dockerfile
     image: anton1307/book_managment
     container_name: book-app
     restart: unless-stopped
     working_dir: /var/www/
 #    volumes:
 #      - ./:/var/www
-    networks:
-      - book-app
-  nginx:
-    image: nginx:alpine
-    container_name: book-app-nginx
-    restart: unless-stopped
     ports:
       - 80:80
-    volumes:
-#      - ./:/var/www
-      - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
     networks:
       - book-app
   mongodb:
