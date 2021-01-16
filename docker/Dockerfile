@@ -68,6 +68,7 @@ RUN chmod +x /usr/local/bin/confd \
 COPY . /var/www/html
 
 RUN chown -R www-data:www-data /var/www && /usr/local/bin/changeowner www-data $USER_UID $USER_GID
+
 WORKDIR /var/www/html
 
 RUN composer install --no-dev --prefer-dist --optimize-autoloader
