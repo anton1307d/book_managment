@@ -65,13 +65,12 @@ RUN chmod +x /usr/local/bin/confd \
     && chmod +x /usr/local/bin/composer \
     && composer --version
 
-COPY . /var/www/html
-
 RUN chown -R www-data:www-data /var/www && /usr/local/bin/changeowner www-data $USER_UID $USER_GID
 
+COPY . /var/www/html
 WORKDIR /var/www/html
 
-RUN composer install  --prefer-dist
+RUN composer install --no-dev --prefer-dist --optimize-autoloader
 
 EXPOSE 80
 
