@@ -65,17 +65,16 @@ RUN chmod +x /usr/local/bin/confd \
     && chmod +x /usr/local/bin/composer \
     && composer --version
 
-RUN chown -R www-data:www-data /var/www && /usr/local/bin/changeowner www-data $USER_UID $USER_GID
-
 COPY . /var/www/html
 WORKDIR /var/www/html
 
-RUN chown -R www-data:www-data /var/www/html
 
+RUN chown -R www-data:www-data /var/www/html && /usr/local/bin/changeowner www-data $USER_UID $USER_GID
+USER www-data
 RUN composer install --no-dev --prefer-dist --optimize-autoloader
 
 EXPOSE 80
-
+USER root
 ENTRYPOINT ["/usr/local/bin/run-app"]
 
 
