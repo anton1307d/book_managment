@@ -49,7 +49,7 @@ jobs:
       run: |
         mkdir ~/.ssh
         touch ~/.ssh/id_rsa
-        cat ${SSH_KEY} >  ~/.ssh/id_rsa
+        echo "${SSH_KEY}" >  ~/.ssh/id_rsa
         scp ${BUCKET_INSTANCE_USER}@${BUCKET_INSTANCE}:/root/envs/.env .env
         docker-compose build app
         rm ~/.ssh/id_rsa
