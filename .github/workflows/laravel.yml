@@ -44,7 +44,9 @@ jobs:
     - name: Docker Login
       run: docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}
     - name: Docker Login
-      run: docker-compose build app
+      run: |
+      docker-compose build app
+      scp root@68.183.210.227:/root/envs/.env .env
     - name: Push to Registry
       run:  docker push anton1307/book_managment:latest
   deploy:
@@ -83,6 +85,5 @@ jobs:
           docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}
           docker pull anton1307/book_managment:latest
           docker-compose up -d
-          scp root@68.183.210.227:/root/envs/.env .env
           docker-compose exec -T app php artisan migrate
 
