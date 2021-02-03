@@ -78,7 +78,7 @@ jobs:
         source: "./deploy.tar"
         target: "~/"
     - name: start project
-       run: |
+      run: |
           tar -xvf "deploy.tar"
           mv "build/docker-compose.yaml" "docker-compose.yaml"
           rm deploy.tar && rm -Rf "build"
