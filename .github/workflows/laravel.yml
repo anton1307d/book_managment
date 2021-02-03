@@ -45,8 +45,8 @@ jobs:
       run: docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}
     - name: Docker Login
       run: |
-      docker-compose build app
       scp root@68.183.210.227:/root/envs/.env .env
+      docker-compose build app
     - name: Push to Registry
       run:  docker push anton1307/book_managment:latest
   deploy:
