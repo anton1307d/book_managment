@@ -12,8 +12,10 @@ services:
     container_name: book-app
     restart: unless-stopped
     working_dir: /var/www/html
-#    volumes:
+#   volumes:
 #      - ./:/var/www/html
+    env_file:
+      - .env
     ports:
       - 80:80
     networks:
