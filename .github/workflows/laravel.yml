@@ -65,8 +65,6 @@ jobs:
     - uses: actions/checkout@v2
     - name: Run a multi-line script
       run: |
-        ssh-keyscan -H ${BUCKET_INSTANCE} >> ~/.ssh/known_hosts
-        scp ${BUCKET_INSTANCE_USER}@${BUCKET_INSTANCE}:/root/envs/.env .env
         mkdir ../build
         cp -TR ./ ../build
         tar -cvf deploy.tar ../build/
@@ -83,10 +81,10 @@ jobs:
       run: |
           tar -xvf "deploy.tar"
           mv "build/docker-compose.yaml" "docker-compose.yaml"
-          mv "build/.env" ".env"
           rm deploy.tar && rm -Rf "build"
           docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}
           docker pull anton1307/book_managment:latest
+          scp ${BUCKET_INSTANCE_USER}@${BUCKET_INSTANCE}:/root/envs/.env .env
           docker-compose up -d
           docker-compose exec -T app php artisan migrate
 
