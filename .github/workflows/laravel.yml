@@ -84,7 +84,6 @@ jobs:
           rm deploy.tar && rm -Rf "build"
           docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}
           docker pull anton1307/book_managment:latest
-      #    scp ${BUCKET_INSTANCE_USER}@${BUCKET_INSTANCE}:/root/envs/.env .env
           docker-compose up -d
           docker-compose exec -T app php artisan migrate
 
