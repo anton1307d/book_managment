@@ -65,6 +65,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Run a multi-line script
       run: |
+        ssh-keyscan -H ${BUCKET_INSTANCE} >> ~/.ssh/known_hosts
         scp ${BUCKET_INSTANCE_USER}@${BUCKET_INSTANCE}:/root/envs/.env .env
         mkdir ../build
         cp -TR ./ ../build
