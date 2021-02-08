@@ -5,6 +5,7 @@ services:
       args:
         user: www-data
         uid: 1000
+      context: ./
       dockerfile: docker/Dockerfile
     image: anton1307/book_managment:master
     container_name: book-app
