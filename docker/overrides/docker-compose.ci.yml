@@ -1,0 +1,43 @@
+version: "3.4"
+services:
+  app:
+    build:
+      args:
+        user: www-data
+        uid: 1000
+      dockerfile: docker/Dockerfile
+    image: anton1307/book_managment:master
+    container_name: book-app
+    restart: unless-stopped
+    working_dir: /var/www/html
+    env_file:
+      - .env
+    ports:
+      - 80:80
+    networks:
+      - book-app
+  mongodb:
+    container_name: book-mongodb
+    image: mongo:latest
+    environment:
+      - MONGO_INITDB_DATABASE=homestead
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=root
+    volumes:
+      - ./docker/mongo/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo-js:ro
+      - /usr/local/mongodb:/data/db
+    ports:
+      - 27017:27017
+    logging:
+      driver: none
+    networks:
+        - book-app
+
+networks:
+  book-app:
+    driver: bridge
+volumes:
+  sessions:
+  appstorage:
+    driver: "local"
+
