@@ -82,7 +82,7 @@ jobs:
         envs: DOCKER_USERNAME, DOCKER_PASSWORD
         script: |
             tar -xvf "deploy.tar"
-            mv "build/docker-compose.override.yml" "docker-compose.override.yml"
+            mv "build/docker-compose.override.yml" "docker-compose.yml"
             rm deploy.tar && rm -Rf "build"
             docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}
             docker pull anton1307/book_managment:${TAG}
