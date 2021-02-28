@@ -74,7 +74,7 @@ USER www-data
 RUN composer install --no-dev --prefer-dist --optimize-autoloader
 
 EXPOSE 80
-USER root
+
 ENTRYPOINT ["/usr/local/bin/run-app"]
 
 
