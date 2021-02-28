@@ -18,41 +18,41 @@ env:
   BUCKET_INSTANCE_USER: root
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v2
-    - name: Set Up .env
-      run: cp .env.example .env
-    - name: Create docker-compose override
-      run: cp docker/overrides/docker-compose.ci.yml docker-compose.override.yml
-    - name:  Build
-      run:  docker-compose build
-    - name: Build
-      run: docker-compose up -d
-    - name: composer install
-      run: docker-compose exec -T app composer install
-    - name: Artisan Key Genegate
-      run:  docker-compose exec -T app php artisan key:generate
-    - name: Test
-      run:  docker-compose exec -T app php artisan test
-
-  publish:
-    runs-on: ubuntu-latest
-    needs: test
-
-    steps:
-    - uses: actions/checkout@v2
-    - name: Docker Login
-      run: docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}
-    - name: Docker Login
-      run:  docker build -t anton1307/book_managment:master -f docker/Dockerfile .
-    - name: Push to Registry
-      run:  docker push anton1307/book_managment:master
+#  test:
+#    runs-on: ubuntu-latest
+#
+#    steps:
+#    - uses: actions/checkout@v2
+#    - name: Set Up .env
+#      run: cp .env.example .env
+#    - name: Create docker-compose override
+#      run: cp docker/overrides/docker-compose.ci.yml docker-compose.override.yml
+#    - name:  Build
+#      run:  docker-compose build
+#    - name: Build
+#      run: docker-compose up -d
+#    - name: composer install
+#      run: docker-compose exec -T app composer install
+#    - name: Artisan Key Genegate
+#      run:  docker-compose exec -T app php artisan key:generate
+#    - name: Test
+#      run:  docker-compose exec -T app php artisan test
+#
+#  publish:
+#    runs-on: ubuntu-latest
+#    needs: test
+#
+#    steps:
+#    - uses: actions/checkout@v2
+#    - name: Docker Login
+#      run: docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}
+#    - name: Docker Login
+#      run:  docker build -t anton1307/book_managment:master -f docker/Dockerfile .
+#    - name: Push to Registry
+#      run:  docker push anton1307/book_managment:master
   deploy:
     runs-on: ubuntu-latest
-    needs: publish
+#    needs: publish
 
     steps:
     - uses: actions/checkout@v2
