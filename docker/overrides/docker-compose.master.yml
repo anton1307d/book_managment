@@ -1,13 +1,15 @@
 version: "3.4"
 services:
   app:
-#    build:
-#      args:
-#        user: www-data
-#        uid: 1000
-#      dockerfile: docker/Dockerfile
     image: anton1307/book_managment:master
     container_name: book-app
+    healthcheck:
+      test: [ "CMD", "nc", "-z", "localhost", "80" ]
+      interval: 30s
+      start_period: 30s
+      timeout: 10s
+    deploy:
+      replicas: 2
     restart: unless-stopped
     working_dir: /var/www/html
     volumes:

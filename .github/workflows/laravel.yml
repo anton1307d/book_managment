@@ -10,7 +10,6 @@ on:
 env:
   DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
   DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-  TAG: ${{ github.run_number }}-${{ github.sha }}
   HOST: ${{ secrets.APP_HOST }}
   SSH_KEY: ${{ secrets.SSH_KEY }}
   PORT: 22
@@ -85,7 +84,8 @@ jobs:
             mv "build/docker-compose.override.yml" "docker-compose.yml"
             rm deploy.tar && rm -Rf "build"
             docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}
-            docker pull anton1307/book_managment:${TAG}
-            docker-compose up -d
+            docker pull anton1307/book_managment:master
             scp ${BUCKET_INSTANCE_USER}@${BUCKET_INSTANCE}:/root/envs/.env .env
-            docker-compose exec -T app php artisan migrate
+            docker-compose config | docker stack deploy -c - --with-registry-auth book_app
+
+
