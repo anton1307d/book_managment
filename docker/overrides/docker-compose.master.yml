@@ -40,7 +40,7 @@ services:
 
 networks:
   book-app:
-    driver: bridge
+    driver: overlay
 volumes:
   sessions:
   appstorage:
