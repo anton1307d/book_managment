@@ -86,6 +86,6 @@ jobs:
             docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}
             docker pull anton1307/book_managment:master
             scp ${BUCKET_INSTANCE_USER}@${BUCKET_INSTANCE}:/root/envs/.env .env
-            docker-compose config | docker stack deploy -c - --with-registry-auth app
+            docker-compose config | docker stack deploy -c docker-compose.yml --with-registry-auth app
 
 
